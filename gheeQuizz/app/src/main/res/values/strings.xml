@@ -6,6 +6,9 @@
     <string name="txtBtnPrevious"> PREVIOUS </string>
     <string name="ToastResultTrue">Ban da tra loi DUNG</string>
     <string name="ToastResultFalse">Ban da tra loi SAI</string>
+    <string name="lblCheatActivity">Are u sure want to do this ?</string>
+    <string name="btnShow">Show</string>
+
 
     <string name="Question1">5 / 6 = 1</string>
     <string name="Question2">2 * 8 = 16</string>

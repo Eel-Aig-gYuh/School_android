@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -13,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.internal.EdgeToEdgeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtnFalse;
     private ImageButton mBtnNext;
     private ImageButton mBtnPrevious;
+    private Button mBtnCheat;
     private TextView mlbQuestion;
     public int current_idx = 0;
     private boolean resultFromBtn;
     private static final String KEY_INDEX = "index";
+    private static final String TAG = "index";
 
 
     private Question[] QuestionBank = new Question[]{
@@ -60,12 +65,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i(TAG, "onCreate() Called");
+
+        if(savedInstanceState != null){
+            current_idx = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
 
         mlbQuestion = findViewById(R.id.lblQuestion);
         mBtnNext = findViewById(R.id.btnNext);
         mBtnTrue = findViewById(R.id.btnTrue);
         mBtnFalse = findViewById(R.id.btnFalse);
         mBtnPrevious = findViewById(R.id.btnPrevious);
+        mBtnCheat = findViewById(R.id.btnCheat);
 
         mBtnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        mBtnCheat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean answer = QuestionBank[current_idx].isResult();
+                Intent cheatActivity = CheatActivity.newIntent(MainActivity.this, answer);
+                startActivity(cheatActivity);
+            }
+        });
 
 
         mBtnNext.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
 
         getQuestions();
 
