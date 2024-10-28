@@ -33,13 +33,8 @@ public class CheatActivity extends AppCompatActivity {
         mBtnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = "";
-                if (mAnswer)
-                    s = "True";
-                else
-                    s = "False";
 
-                mTextViewAns.setText(s);
+                mTextViewAns.setText(mAnswer?"True":"False");
             }
         });
     }
