@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/lblQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xxxxxxxxxxxxx"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:textSize="50dp">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+
+        <Button
+            android:id="@+id/btnTrue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtBtnFalse"
+            android:gravity="center"
+            android:layout_marginRight="5dp">
+
+        </Button>
+        <Button
+            android:id="@+id/btnFalse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txtBtnTrue"
+            android:gravity="center">
+
+        </Button>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txtBtnPrevious"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24">
+
+        </ImageButton>
+        <ImageButton
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txtBtnNext"
+            android:src="@drawable/ic_baseline_double_arrow_24">
+        </ImageButton>
+
+    </LinearLayout>
+
+
+</FrameLayout>

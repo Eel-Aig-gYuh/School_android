@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">gheeQuizz</string>
+    <string name="txtBtnTrue">TRUE</string>
+    <string name="txtBtnFalse">FALSE</string>
+    <string name="txtBtnNext"> NEXT </string>
+    <string name="txtBtnPrevious"> PREVIOUS </string>
+    <string name="ToastResultTrue">Ban da tra loi DUNG</string>
+    <string name="ToastResultFalse">Ban da tra loi SAI</string>
+
+    <string name="Question1">5 / 6 = 1</string>
+    <string name="Question2">2 * 8 = 16</string>
+    <string name="Question3">2 + 1 = 2</string>
+    <string name="Question4">H20 la nuoc</string>
+    <string name="Question5">4 / 2 = 2</string>
+
+</resources>
