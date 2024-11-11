@@ -44,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="10dp"
-            android:hint="SUN NOV 10 17:02:30 EST 2024"
             />
 
         <CheckBox
