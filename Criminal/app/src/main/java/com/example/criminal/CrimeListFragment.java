@@ -1,5 +1,6 @@
 package com.example.criminal;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,31 +24,47 @@ import java.util.List;
  */
 public class CrimeListFragment extends Fragment {
 
-    private RecyclerView mRecycleView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String test = "crimeId";
 
     private CrimeAdapter crimeAdapter;
+    private RecyclerView mRecycleView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_crime_list, container, false);
 
-        mRecycleView = (RecyclerView) v.findViewById(R.id.recycle_view_crime);
+        mRecycleView = v.findViewById(R.id.recycle_view_crime);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        CrimeLab crimeLab = CrimeLab.get(this);
-        List<Crime> crimes = crimeLab.getmCrimes();
-        crimeAdapter = new CrimeAdapter(crimes);
 
-        mRecycleView.setAdapter(crimeAdapter);
+        updateUI();
 
         return v;
     }
+    public void updateUI(){
+        CrimeLab crimeLab = CrimeLab.get(getActivity());
+        List<Crime> crimes = crimeLab.getmCrimes();
 
+        if (crimeAdapter == null){
+            crimeAdapter = new CrimeAdapter(crimes);
+            mRecycleView.setAdapter(crimeAdapter);
+        }
+        else{
+            crimeAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -76,7 +94,9 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-
+//            Intent intent = MainActivity.newIntent(getActivity(), mCrime.getmId());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getmId());
+            startActivity(intent);
         }
     }
 
@@ -107,6 +127,7 @@ public class CrimeListFragment extends Fragment {
             return mCrime.size();
         }
     }
+
 
 
     public CrimeListFragment() {

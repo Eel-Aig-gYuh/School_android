@@ -20,7 +20,7 @@ public abstract class SingleFragmentActivity extends FragmentActivity {
         Fragment fragment = ((FragmentManager) fragmentManager).findFragmentById(R.id.fragment_containter);
 
         if(fragment == null){
-            fragment = new CrimeListFragment();
+            fragment = createFragment();
             fragmentManager.beginTransaction()
                     .add(R.id.fragment_containter, fragment)
                     .commit();

@@ -1,11 +1,13 @@
 package com.example.criminal;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.UUID;
 import java.util.zip.Inflater;
 
 /**
@@ -35,7 +38,8 @@ public class CriminalFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private static final String EXTRA_CRIME_ID = "crimeId";
+    private static final String test = "crimeId";
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -53,11 +57,12 @@ public class CriminalFragment extends Fragment {
      * @return A new instance of fragment CriminalItent.
      */
     // TODO: Rename and change types and number of parameters
-    public static CriminalFragment newInstance(String param1, String param2) {
+    public static CriminalFragment newInstance(UUID crimeId) {
         CriminalFragment fragment = new CriminalFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(EXTRA_CRIME_ID, crimeId);
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,12 +70,12 @@ public class CriminalFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UUID crimeId = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
+        mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        mCrime = new Crime();
 
     }
 
@@ -84,6 +89,10 @@ public class CriminalFragment extends Fragment {
         mEditText_CrimeTitle = v.findViewById(R.id.editText);
         mButton = v.findViewById(R.id.btnDetail);
         mCheckBoxSolved = v.findViewById(R.id.checkBoxSolved);
+
+        mEditText_CrimeTitle.setText(mCrime.getmTitle());
+        mCheckBoxSolved.setChecked(mCrime.ismSolved());
+        mButton.setText(mCrime.getmDate().toString());
 
         mEditText_CrimeTitle.addTextChangedListener(new TextWatcher() {
             @Override

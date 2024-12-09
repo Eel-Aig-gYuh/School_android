@@ -9,7 +9,7 @@ import java.util.UUID;
 public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
-    public static CrimeLab get(CrimeListFragment context){
+    public static CrimeLab get(Context context){
         if(sCrimeLab == null){
             sCrimeLab = new CrimeLab(context);
         }
@@ -18,7 +18,7 @@ public class CrimeLab {
     }
 
     private List<Crime> mCrimes;
-    private CrimeLab(CrimeListFragment context){
+    private CrimeLab(Context context){
         mCrimes = new ArrayList<Crime>();
 
         // tao db
